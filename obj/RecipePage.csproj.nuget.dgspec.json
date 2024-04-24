@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projekter\\RecipePage\\RecipePage.csproj": {}
+    "c:\\Projekter\\RecipePage\\RecipePage.csproj": {}
   },
   "projects": {
-    "C:\\Projekter\\RecipePage\\RecipePage.csproj": {
+    "c:\\Projekter\\RecipePage\\RecipePage.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projekter\\RecipePage\\RecipePage.csproj",
+        "projectUniqueName": "c:\\Projekter\\RecipePage\\RecipePage.csproj",
         "projectName": "RecipePage",
-        "projectPath": "C:\\Projekter\\RecipePage\\RecipePage.csproj",
+        "projectPath": "c:\\Projekter\\RecipePage\\RecipePage.csproj",
         "packagesPath": "C:\\Users\\ras_s\\.nuget\\packages\\",
-        "outputPath": "C:\\Projekter\\RecipePage\\obj\\",
+        "outputPath": "c:\\Projekter\\RecipePage\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ras_s\\AppData\\Roaming\\NuGet\\NuGet.Config",
