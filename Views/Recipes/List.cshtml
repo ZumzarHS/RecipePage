@@ -1,0 +1,35 @@
+@*
+
+*@
+
+@{
+
+}
+
+@model List<RecipePage.Models.Entities.Recipe>
+
+<h1>Recipes</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recipe in Model)
+        {
+            <tr>
+                <td>@recipe.Id</td>
+                <td>@recipe.Title</td>
+                <td><a class="btn btn-primary" asp-controller="Recipes" asp-action="Edit" asp-route-id="@recipe.Id">Edit</a>
+                </td>
+                <td><button type="submit" class="btn btn-danger" asp-action="Delete"
+                        asp-controller="Recipes">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
