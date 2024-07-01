@@ -22,39 +22,6 @@ namespace RecipePage.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("RecipePage.Models.Entities.Ingredients", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Note")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("RecipeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Units")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RecipeId");
-
-                    b.ToTable("Ingredients");
-                });
-
             modelBuilder.Entity("RecipePage.Models.Entities.Recipe", b =>
                 {
                     b.Property<Guid>("Id")
@@ -68,6 +35,10 @@ namespace RecipePage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ListOfIngredients")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -75,18 +46,6 @@ namespace RecipePage.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Recipes");
-                });
-
-            modelBuilder.Entity("RecipePage.Models.Entities.Ingredients", b =>
-                {
-                    b.HasOne("RecipePage.Models.Entities.Recipe", null)
-                        .WithMany("ListOfIngredients")
-                        .HasForeignKey("RecipeId");
-                });
-
-            modelBuilder.Entity("RecipePage.Models.Entities.Recipe", b =>
-                {
-                    b.Navigation("ListOfIngredients");
                 });
 #pragma warning restore 612, 618
         }

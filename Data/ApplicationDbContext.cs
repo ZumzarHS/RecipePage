@@ -13,16 +13,5 @@ namespace RecipePage.Data
 
         public DbSet<Recipe> Recipes { get; set; }
 
-        public DbSet<Ingredients> Ingredients { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Ingredients>()
-                .Property(i => i.Amount)
-                .HasColumnType("decimal(18,2)"); // Adjust precision and scale as needed
-
-            base.OnModelCreating(modelBuilder);
-        }
-
     }
 }

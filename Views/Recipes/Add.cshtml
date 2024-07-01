@@ -19,28 +19,8 @@
     </div>
 
     <div class="mt-3">
-        <label>Ingredients</label>
-        <div id="ingredients">
-            <div class="ingredient row">
-                <div class="col">
-                    <input type="text" name="ListOfIngredients[0].Name" placeholder="Ingredient name"
-                        class="form-control" />
-                </div>
-                <div class="col">
-                    <input type="number" name="ListOfIngredients[0].Amount" placeholder="Amount" class="form-control" />
-                </div>
-                <div class="col">
-                    <input type="text" name="ListOfIngredients[0].Units" placeholder="Unit" class="form-control" />
-                </div>
-                <div class="col">
-                    <input type="text" name="ListOfIngredients[0].Note" placeholder="Note" class="form-control" />
-                </div>
-                <div class="col">
-                    <button type="button" class="btn btn-danger delete-ingredient">Delete</button>
-                </div>
-            </div>
-        </div>
-        <button type="button" id="addIngredient" class="btn btn-primary mt-2">Add Ingredient</button>
+        <label for="form-label">Ingredients</label>
+        <input type="text" class="form-control" asp-for="ListOfIngredients">
     </div>
 
     <div class="mt-3">

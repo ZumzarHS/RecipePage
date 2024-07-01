@@ -32,8 +32,8 @@ namespace RecipePage.Models.Entities
                 _description = value;
             }
         }
-        private List<Ingredients> _ingredients = new List<Ingredients>();
-        public required List<Ingredients> ListOfIngredients
+        private List<string> _ingredients = new List<string>();
+        public required List<string> ListOfIngredients
         {
             get { return _ingredients; }
             set
@@ -45,6 +45,7 @@ namespace RecipePage.Models.Entities
                 _ingredients = value;
             }
         }
+
         // TODO: property that containts information on how to
 
         public TimeSpan CookingTime { get; set; }

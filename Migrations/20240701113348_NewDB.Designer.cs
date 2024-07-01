@@ -12,8 +12,8 @@ using RecipePage.Data;
 namespace RecipePage.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240415134436_3.Migration")]
-    partial class _3Migration
+    [Migration("20240701113348_NewDB")]
+    partial class NewDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,7 +38,7 @@ namespace RecipePage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Ingredients")
+                    b.Property<string>("ListOfIngredients")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

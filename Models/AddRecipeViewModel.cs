@@ -26,8 +26,8 @@ namespace RecipePage.Models
             get { return _description; }
             set { _description = value; }
         }
-        private List<Ingredients> _ingredients = new List<Ingredients>();
-        public required List<Ingredients> ListOfIngredients
+        private List<string> _ingredients = new List<string>();
+        public required List<string> ListOfIngredients
         {
             get { return _ingredients; }
             set
@@ -39,6 +39,21 @@ namespace RecipePage.Models
                 _ingredients = value;
             }
         }
+
+
+        /*  private List<Ingredients> _ingredients = new List<Ingredients>();
+          public required List<Ingredients> ListOfIngredients
+          {
+              get { return _ingredients; }
+              set
+              {
+                  if (value == null || value.Count == 0)
+                  {
+                      throw new ArgumentException("Ingredients cannot be null or empty.");
+                  }
+                  _ingredients = value;
+              }
+          } */
         // TODO: property that containts information on how to
 
         public TimeSpan CookingTime { get; set; }
