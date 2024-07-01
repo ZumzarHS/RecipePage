@@ -1,0 +1,40 @@
+@*
+*@
+@{
+}
+
+@model RecipePage.Models.Entities.Recipe
+
+<h1>@Model.Title</h1>
+
+
+@if (Model is null)
+{
+    <p>No recipe was found with this id!</p>
+}
+else
+{
+    <form method="post">
+        <div>
+            <h3>Description</h3>
+            <p>@Model.Description</p>
+        </div>
+
+        <div>
+            <h3>Ingredients</h3>
+            <ul>
+                @foreach (var ingredient in Model.ListOfIngredients)
+                {
+                    <li>@ingredient</li>
+                }
+            </ul>
+        </div>
+
+        <div>
+            <h3>Cooking Time</h3>
+            <p>@Model.CookingTime.Hours hours @Model.CookingTime.Minutes minutes</p>
+        </div>
+
+        <a asp-controller="Recipes" asp-action="List" class="btn btn-primary">Back to List</a>
+    </form>
+}

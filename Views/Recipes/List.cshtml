@@ -23,7 +23,7 @@
         {
             <tr>
                 <td>@recipe.Id</td>
-                <td>@recipe.Title</td>
+                <td><a asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.Id">@recipe.Title</a></td>
                 <td><a class="btn btn-primary" asp-controller="Recipes" asp-action="Edit" asp-route-id="@recipe.Id">Edit</a>
                 </td>
                 <td><button type="submit" class="btn btn-danger" asp-action="Delete"
@@ -31,5 +31,7 @@
                 </td>
             </tr>
         }
+        <td><a class="btn btn-primary" asp-controller="Recipes" asp-action="Add">Add</a>
+        </td>
     </tbody>
 </table>

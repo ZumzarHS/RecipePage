@@ -93,5 +93,16 @@ namespace RecipePage.Controllers
             }
             return RedirectToAction("List", "Recipes");
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var recipe = await dbContext.Recipes.FirstOrDefaultAsync(m => m.Id == id);
+            if (recipe == null)
+            {
+                return NotFound();
+            }
+
+            return View(recipe);
+        }
     }
 }
