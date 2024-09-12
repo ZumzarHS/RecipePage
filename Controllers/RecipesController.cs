@@ -30,7 +30,8 @@ namespace RecipePage.Controllers
                     Title = viewModel.Title,
                     Description = viewModel.Description,
                     ListOfIngredients = viewModel.ListOfIngredients,
-                    CookingTime = viewModel.CookingTime
+                    CookingTime = viewModel.CookingTime,
+                    Instructions = viewModel.Instructions
                 };
                 // Add new Recipe object to database
                 await dbContext.Recipes.AddAsync(recipe);
@@ -39,6 +40,7 @@ namespace RecipePage.Controllers
             }
             catch (Exception e)
             {
+                ModelState.AddModelError(string.Empty, "An error occurred while saving the recipe.");
                 return StatusCode(500, e);
             }
         }
@@ -72,6 +74,7 @@ namespace RecipePage.Controllers
                 recipe.Description = viewModel.Description;
                 recipe.ListOfIngredients = viewModel.ListOfIngredients;
                 recipe.CookingTime = viewModel.CookingTime;
+                recipe.Instructions = viewModel.Instructions;
 
                 await dbContext.SaveChangesAsync();
             }
@@ -79,7 +82,6 @@ namespace RecipePage.Controllers
         }
 
         [HttpPost]
-
         public async Task<IActionResult> Delete(Recipe viewModel)
         {
             var recipe = await dbContext.Recipes
@@ -93,6 +95,7 @@ namespace RecipePage.Controllers
             }
             return RedirectToAction("List", "Recipes");
         }
+
         [HttpGet]
         public async Task<IActionResult> Details(Guid id)
         {

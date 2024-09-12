@@ -40,22 +40,21 @@ namespace RecipePage.Models
             }
         }
 
-
-        /*  private List<Ingredients> _ingredients = new List<Ingredients>();
-          public required List<Ingredients> ListOfIngredients
-          {
-              get { return _ingredients; }
-              set
-              {
-                  if (value == null || value.Count == 0)
-                  {
-                      throw new ArgumentException("Ingredients cannot be null or empty.");
-                  }
-                  _ingredients = value;
-              }
-          } */
-        // TODO: property that containts information on how to
-
         public TimeSpan CookingTime { get; set; }
+
+        private List<string> _instructions = new List<string>();
+        public required List<string> Instructions
+        {
+            get { return _instructions; }
+            set
+            {
+                if (value == null || value.Count == 0)
+                {
+                    throw new ArgumentException("Instructions cannot be null or empty.");
+                }
+                _instructions = value;
+            }
+        }
+
     }
 }

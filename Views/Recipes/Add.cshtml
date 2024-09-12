@@ -18,14 +18,27 @@
         <input type="text" class="form-control" asp-for="Description">
     </div>
 
-    <div class="mt-3">
+    <div class="mt-3" id="ingredients">
         <label for="form-label">Ingredients</label>
-        <input type="text" class="form-control" asp-for="ListOfIngredients">
+        <div class="ingredient-wrapper d-flex align-items-center mb-2">
+            <input type="text" class="form-control me-2" name="ListOfIngredients[0]" />
+            <button type="button" class="btn btn-danger delete-ingredient">Delete</button>
+        </div>
+        <button type="button" id="addIngredient" class="btn btn-primary mt-2">Add Ingredient</button>
     </div>
 
     <div class="mt-3">
         <label for="form-label">Cooking Time</label>
         <input type="time" class="form-control" asp-for="CookingTime" placeholder="hours:minutes">
+    </div>
+
+    <div class="mt-3" id="instructions">
+        <label for="form-label">Instructions</label>
+        <div class="instruction-wrapper d-flex align-items-center mb-2">
+            <input type="text" class="form-control me-2" name="Instructions[0]" />
+            <button type="button" class="btn btn-danger delete-instruction">Delete</button>
+        </div>
+        <button type="button" id="addInstruction" class="btn btn-primary mt-2">Add Instruction</button>
     </div>
 
     <div class="mt-3">
@@ -36,37 +49,55 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            // Initialize the ingredient index
             var ingredientIndex = 1;
+            var instructionIndex = 1;
 
             // Event listener for the "Add Ingredient" button
             $("#addIngredient").click(function () {
-                // Clone the first ingredient input fields
-                var newIngredient = $(".ingredient").first().clone();
-                // Clear the input fields
-                newIngredient.find('input').val('');
-                // Append the cloned ingredient input fields to the list of ingredients
-                newIngredient.appendTo("#ingredients");
-                // Update the indexes of all ingredients
-                updateIngredientIndexes();
+                var newIngredient = '<div class="ingredient-wrapper d-flex align-items-center mb-2">' +
+                    '<input type="text" class="form-control me-2" name="ListOfIngredients[' + ingredientIndex + ']" />' +
+                    '<button type="button" class="btn btn-danger delete-ingredient">Delete</button>' +
+                    '</div>';
+                $("#ingredients").append(newIngredient);
+                ingredientIndex++;
             });
 
-            // Function to update the indexes of all ingredients
+            // Event listener for the "Add Instruction" button
+            $("#addInstruction").click(function () {
+                var newInstruction = '<div class="instruction-wrapper d-flex align-items-center mb-2">' +
+                    '<input type="text" class="form-control me-2" name="Instructions[' + instructionIndex + ']" />' +
+                    '<button type="button" class="btn btn-danger delete-instruction">Delete</button>' +
+                    '</div>';
+                $("#instructions").append(newInstruction);
+                instructionIndex++;
+            });
+
+            // Function to update the ingredient indexes
             function updateIngredientIndexes() {
-                $(".ingredient").each(function (index) {
-                    // Update the index of each input field within the ingredient
-                    $(this).find("input").each(function () { // Selects all input fields within the current ingredient and iterates over each input field.
-                        var name = $(this).attr("name");
-                        var newName = name.replace(/\[(\d+)\]/, "[" + index + "]"); // Replaces index number in name attribute
-                        $(this).attr("name", newName);
-                    });
+                $('#ingredients .ingredient-wrapper').each(function (index, element) {
+                    $(element).find('input').attr('name', 'ListOfIngredients[' + index + ']');
                 });
+                ingredientIndex = $('#ingredients .ingredient-wrapper').length;
+            }
+
+            // Function to update the instruction indexes
+            function updateInstructionIndexes() {
+                $('#instructions .instruction-wrapper').each(function (index, element) {
+                    $(element).find('input').attr('name', 'Instructions[' + index + ']');
+                });
+                instructionIndex = $('#instructions .instruction-wrapper').length;
             }
 
             // Event listener for the "Delete Ingredient" button
             $(document).on("click", ".delete-ingredient", function () {
-                $(this).closest(".ingredient").remove(); // Remove the ingredient
-                updateIngredientIndexes(); // Update the indexes of all ingredients
+                $(this).closest(".ingredient-wrapper").remove();
+                updateIngredientIndexes();
+            });
+
+            // Event listener for the "Delete Instruction" button
+            $(document).on("click", ".delete-instruction", function () {
+                $(this).closest(".instruction-wrapper").remove();
+                updateInstructionIndexes();
             });
         });
     </script>

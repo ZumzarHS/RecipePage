@@ -31,8 +31,18 @@ else
         </div>
 
         <div>
-            <h3>Cooking Time</h3>
+            <h4>Cooking Time</h4>
             <p>@Model.CookingTime.Hours hours @Model.CookingTime.Minutes minutes</p>
+        </div>
+
+        <div>
+            <h3>Instructions to make @Model.Title</h3>
+            <ol>
+                @foreach (var instruction in Model.Instructions)
+                {
+                    <li>@instruction</li>
+                }
+            </ol>
         </div>
 
         <a asp-controller="Recipes" asp-action="List" class="btn btn-primary">Back to List</a>

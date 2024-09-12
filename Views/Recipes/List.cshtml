@@ -1,11 +1,3 @@
-@*
-
-*@
-
-@{
-
-}
-
 @model List<RecipePage.Models.Entities.Recipe>
 
 <h1>Recipes</h1>
@@ -26,12 +18,19 @@
                 <td><a asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.Id">@recipe.Title</a></td>
                 <td><a class="btn btn-primary" asp-controller="Recipes" asp-action="Edit" asp-route-id="@recipe.Id">Edit</a>
                 </td>
-                <td><button type="submit" class="btn btn-danger" asp-action="Delete"
-                        asp-controller="Recipes">Delete</button>
+                <td>
+                    <form method="post" asp-action="Delete" asp-controller="Recipes"
+                        onsubmit="return confirm('Are you sure you want to delete this recipe?');">
+                        <input type="hidden" name="id" value="@recipe.Id" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
         }
-        <td><a class="btn btn-primary" asp-controller="Recipes" asp-action="Add">Add</a>
-        </td>
+        <tr>
+            <td colspan="4">
+                <a class="btn btn-primary" asp-controller="Recipes" asp-action="Add">Add</a>
+            </td>
+        </tr>
     </tbody>
 </table>

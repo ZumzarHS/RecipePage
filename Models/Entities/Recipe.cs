@@ -46,7 +46,19 @@ namespace RecipePage.Models.Entities
             }
         }
 
-        // TODO: property that containts information on how to
+        private List<string> _instructions = new List<string>();
+        public required List<string> Instructions
+        {
+            get { return _instructions; }
+            set
+            {
+                if (value == null || value.Count == 0)
+                {
+                    throw new ArgumentException("Instructions cannot be null or empty.");
+                }
+                _instructions = value;
+            }
+        }
 
         public TimeSpan CookingTime { get; set; }
     }
