@@ -17,7 +17,7 @@ namespace RecipePage.Models.Entities
             }
         }
 
-        // FUTURE WORK: Implement image of dish
+        public byte[]? ImageData { get; set; }
 
         private string _description = "";
         public string Description

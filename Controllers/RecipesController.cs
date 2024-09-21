@@ -33,6 +33,21 @@ namespace RecipePage.Controllers
                     CookingTime = viewModel.CookingTime,
                     Instructions = viewModel.Instructions
                 };
+
+                if (viewModel.ImageFile != null && viewModel.ImageFile.Length > 0)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await viewModel.ImageFile.CopyToAsync(memoryStream);
+                        recipe.ImageData = memoryStream.ToArray(); // Convert the image to byte array
+                    }
+                }
+                else
+                {
+                    recipe.ImageData = null; // If no image was uploaded
+                }
+
+
                 // Add new Recipe object to database
                 await dbContext.Recipes.AddAsync(recipe);
                 await dbContext.SaveChangesAsync();

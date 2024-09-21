@@ -16,6 +16,12 @@ else
         </div>
 
         <div class="mt-3">
+            <label for="form-label">Upload Image</label>
+            <input type="file" class="form-control" asp-for="ImageData">
+            <span asp-validation-for="ImageData" class="text-danger"></span>
+        </div>
+
+        <div class="mt-3">
             <label for="form-label">Description</label>
             <input type="text" class="form-control" asp-for="Description">
         </div>

@@ -16,6 +16,17 @@ else
 {
     <form method="post">
         <div>
+            @if (Model.ImageData != null)
+            {
+                var base64Image = "data:image/png;base64," + Convert.ToBase64String(Model.ImageData);
+                <img src="@base64Image" alt="Recipe Image" style="max-width:300px; max-height:300px;" />
+            }
+            else
+            {
+                <img src="/images/image_placeholder.jpg" style="max-width:200px; max-height:200px;"></img>
+            }
+        </div>
+        <div>
             <h3>Description</h3>
             <p>@Model.Description</p>
         </div>

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using RecipePage.Models.Entities;
 
 namespace RecipePage.Models
@@ -18,7 +19,7 @@ namespace RecipePage.Models
             }
         }
 
-        // FUTURE WORK: Implement image of dish
+        public IFormFile? ImageFile { get; set; }
 
         private string _description = "";
         public string Description

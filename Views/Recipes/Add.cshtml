@@ -6,12 +6,19 @@
 @model RecipePage.Models.AddRecipeViewModel
 
 <h1>Add Recipe</h1>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 
     <div class="mt-3">
         <label for="form-label">Title</label>
         <input type="text" class="form-control" asp-for="Title">
     </div>
+
+    <div class="mt-3">
+        <label for="form-label">Upload Image</label>
+        <input type="file" class="form-control" asp-for="ImageFile">
+        <span asp-validation-for="ImageFile" class="text-danger"></span>
+    </div>
+
 
     <div class="mt-3">
         <label for="form-label">Description</label>
