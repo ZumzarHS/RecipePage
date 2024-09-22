@@ -73,23 +73,48 @@ namespace RecipePage.Controllers
         public async Task<IActionResult> Edit(Guid id)
         {
             var recipe = await dbContext.Recipes.FindAsync(id);
-            return View(recipe);
+
+            // Map Recipe entity to EditRecipeViewModel
+            var viewModel = new EditRecipeViewModel
+            {
+                Title = recipe.Title,
+                Description = recipe.Description,
+                ListOfIngredients = recipe.ListOfIngredients,
+                CookingTime = recipe.CookingTime,
+                Instructions = recipe.Instructions,
+                ExistingImage = recipe.ImageData  // Pass existing image (byte array)
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
 
-        public async Task<IActionResult> Edit(Recipe viewModel)
+        public async Task<IActionResult> Edit(EditRecipeViewModel viewModel)
         {
             var recipe = await dbContext.Recipes.FindAsync(viewModel.Id);
 
             if (recipe is not null)
             {
-                recipe.Id = viewModel.Id;
                 recipe.Title = viewModel.Title;
                 recipe.Description = viewModel.Description;
                 recipe.ListOfIngredients = viewModel.ListOfIngredients;
                 recipe.CookingTime = viewModel.CookingTime;
                 recipe.Instructions = viewModel.Instructions;
+
+                if (viewModel.ImageFile != null && viewModel.ImageFile.Length > 0)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await viewModel.ImageFile.CopyToAsync(memoryStream);
+                        recipe.ImageData = memoryStream.ToArray();  // Store the new image
+                    }
+                }
+                else
+                {
+                    // Keep the existing image if no new image is uploaded
+                    recipe.ImageData = viewModel.ExistingImage;
+                }
 
                 await dbContext.SaveChangesAsync();
             }
