@@ -147,5 +147,24 @@ namespace RecipePage.Controllers
 
             return View(recipe);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Search(string searchString)
+        {
+            if (dbContext.Recipes == null)
+            {
+                return Problem("Entity is null.");
+            }
+
+            var recipes = from r in dbContext.Recipes
+                          select r;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                recipes = recipes.Where(s => s.Title!.ToUpper().Contains(searchString.ToUpper()));
+            }
+
+            return View("List", await recipes.ToListAsync());
+        }
     }
 }

@@ -2,6 +2,16 @@
 
 <h1>Recipes</h1>
 
+<form asp-controller="Recipes" asp-action="Search" method="get">
+    <p>
+        <label>Title:
+            <input type="text" name="searchString" value="@Context.Request.Query["searchString"]" />
+        </label>
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </p>
+</form>
+
+
 <table class="table">
     <thead>
         <tr>
