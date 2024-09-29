@@ -112,8 +112,8 @@ namespace RecipePage.Controllers
                 }
                 else
                 {
-                    // Keep the existing image if no new image is uploaded
-                    recipe.ImageData = viewModel.ExistingImage;
+                    // Keep the existing image if no new image is uploaded. If ExistingImage is null it saves ImageData instead.
+                    recipe.ImageData = viewModel.ExistingImage ?? recipe.ImageData;
                 }
 
                 await dbContext.SaveChangesAsync();
